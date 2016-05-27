@@ -8,6 +8,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.filter.LoggingFilter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +30,9 @@ public class ClientTest {
 	@Before
 	public void startServidor(){
 		server = Servidor.startaServidor();
-		client = ClientBuilder.newClient();
+		ClientConfig config = new ClientConfig();
+		config.register(LoggingFilter.class);
+		client = ClientBuilder.newClient(config);
 		target = client.target("http://localhost:8180");
 	}
 	
@@ -70,6 +74,6 @@ public class ClientTest {
         Entity<String> entity = Entity.entity(xml, MediaType.APPLICATION_XML);
 
         Response response = target.path("/carrinhos").request().post(entity);
-        Assert.assertEquals("<status>sucesso</status>", response.readEntity(String.class));
+        Assert.assertEquals(201, response.getStatus());
     }
 }
