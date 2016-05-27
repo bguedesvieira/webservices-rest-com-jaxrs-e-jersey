@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.google.gson.Gson;
+
 public class Carrinho extends ModeloBase{
 
 	private List<Produto> produtos = new ArrayList<Produto>();
@@ -69,5 +71,4 @@ public class Carrinho extends ModeloBase{
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
-
 }
