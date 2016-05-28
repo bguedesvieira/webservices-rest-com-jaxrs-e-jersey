@@ -4,14 +4,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.google.gson.Gson;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Carrinho extends ModeloBase{
 
 	private List<Produto> produtos = new ArrayList<Produto>();
 	private String rua;
 	private String cidade;
 	private long id;
+	
+	public Carrinho(){}
 
 	public Carrinho adiciona(Produto produto) {
 		produtos.add(produto);
@@ -36,6 +42,11 @@ public class Carrinho extends ModeloBase{
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
+	
+	public String getCidade(){
+		return this.cidade;
+	}
+	
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
